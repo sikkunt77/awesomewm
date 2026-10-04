@@ -1,6 +1,6 @@
 local awful   = require('awful')
 local naughty = require('naughty')
-local rule    = require('rule')
+local ruled    = require('ruled')
 
 --- Notifications
 ruled.notification.connect_signal('request::rules', function()
