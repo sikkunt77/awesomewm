@@ -56,6 +56,40 @@ awful.keyboard.append_global_keybindings({
     awful.key({ modkey, }, 'Tab',
         awful.tag.history.restore,
         {description = 'back and forth', group = 'tag'}),
+    
+    -- Media related keybindings	
+    awful.key({ "Mod1" }, "space", function ()
+ 	    awful.spawn("rofi -show drun")
+    end, {description = "rofi drun", group = "launcher"}),
+
+    awful.key({}, "XF86AudioRaiseVolume", function ()
+	    awful.spawn("pamixer -i 5")
+    end, {description = "volume up", group = "media"}),
+
+    awful.key({}, "XF86AudioLowerVolume", function ()
+	    awful.spawn("pamixer -d 5")
+    end, {description = "volume down", group = "media"}),
+
+    awful.key({}, "XF86AudioMute", function()
+	    awful.spawn("pamixer --toggle-mute")
+    end, {description = "toggle mute", group ="media"}),
+
+    awful.key({}, "XF86MonBrightnessUp", function()
+	    awful.spawn("brightnessctl set +5%")
+    end, {description = "up brightness", group = "media"}),
+
+    awful.key({}, "XF86MonBrightnessDown", function()
+	    awful.spawn("brightnessctl set 5%-")
+    end, {description = "down brightness", group = "media"}),
+
+    awful.key({}, "XF86LaunchA", function()
+	    awful.spawn("flameshot gui --path /home/dusty/Pictures/Screenshots/")
+    end, {description = "screenshot", group = "media"}),
+
+    awful.key({}, "XF86LaunchB", function()
+	    awful.spawn("rofi -show window")
+    end, {description = "running apps", group = "task"}),
+	
 
     --Focuse related keybindings
     awful.key({ modkey, }, 'j', function()
