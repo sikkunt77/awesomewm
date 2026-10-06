@@ -5,8 +5,6 @@ apps.editor = os.getenv('EDITOR') or 'vim'
 apps.editor_cmd = apps.terminal .. ' -e ' .. apps.editor
 
 --Terminal for menubar
-require('menubar').utils.terminal = apps.terminal
+require('menubar').utils.terminal = terminal
 
 return apps
-
-

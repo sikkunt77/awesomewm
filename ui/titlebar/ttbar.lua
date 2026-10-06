@@ -1,6 +1,7 @@
+
 local awful = require('awful')
 local wibox = require('wibox')
-
+--[[
 --- The titlebar to be used on normal clients.
 return function(c)
    -- Buttons for the titlebar.
@@ -42,3 +43,4 @@ return function(c)
       }
    })
 end
+]]

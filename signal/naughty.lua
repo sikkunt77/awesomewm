@@ -1,20 +1,24 @@
-local awful   = require('awful')
 local naughty = require('naughty')
-local ruled    = require('ruled')
 
---- Notifications
-ruled.notification.connect_signal('request::rules', function()
-   -- All notifications will match this rule.
-   ruled.notification.append_rule({
-      rule       = nil,
-      properties = {
-         screen           = awful.screen.preferred,
-         implicit_timeout = 5
-      }
-   })
-end)
+if awesome.startup_errors then
+    naughty.notify({ preset = naughty.config.presets.critical,
+                     title = "Oops, there were errors during startup!",
+                     text = awesome.startup_errors })
+end
 
--- Defines the default notification layout.
-naughty.connect_signal('request::display', function(n)
-   require('ui.notification')(n)
-end)
+-- Handle runtime errors after startup
+do
+    local in_error = false
+    awesome.connect_signal("debug::error", function (err)
+        -- Make sure we don't go into an endless error loop
+        if in_error then return end
+        in_error = true
+
+        naughty.notify({ preset = naughty.config.presets.critical,
+                         title = "Oops, an error happened!",
+                         text = tostring(err) })
+        in_error = false
+    end)
+end
+
+return naughty
